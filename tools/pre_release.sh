@@ -12,8 +12,8 @@ CHANGED=`git status -s -uno | sed 's/[A-Z]  //'`
 
 if [[ "$CHANGED" == "" ]]; then
   echo "no changes"
-  git checkout develop
-  git branch -d $PRERELEASE_BRANCH
+#  git checkout develop
+#  git branch -d $PRERELEASE_BRANCH
 else
   echo "pushing changes"
   git commit -a --no-edit
