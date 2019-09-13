@@ -5,7 +5,7 @@ VERSION=`echo $SNAPSHOT_VERSION | sed 's/-SNAPSHOT//'`
 
 PRERELEASE_BRANCH="release/rc-$VERSION"
 
-git checkout -b $PRERELEASE_BRANCH origin/release/stg
+git checkout -b $PRERELEASE_BRANCH release/stg
 git pull origin develop --no-commit
 
 CHANGED=`git status -s -uno | sed 's/[A-Z]  //'`
