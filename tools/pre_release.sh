@@ -5,19 +5,18 @@ VERSION=`echo $SNAPSHOT_VERSION | sed 's/-SNAPSHOT//'`
 
 PRERELEASE_BRANCH="release/rc-$VERSION"
 
-git checkout -b $PRERELEASE_BRANCH release/stg
-git pull origin develop --no-commit
+git checkout release/stg
+git pull origin develop
 
-CHANGED=`git status -s -uno | sed 's/[A-Z]  //'`
+CHANGED=`git status | grep "use \"git push\""`
 
 if [[ "$CHANGED" == "" ]]; then
   echo "no changes"
-#  git checkout develop
-#  git branch -d $PRERELEASE_BRANCH
+  git checkout develop
 else
   echo "pushing changes"
-  git commit -a --no-edit
-  git push -u -n origin $PRERELEASE_BRANCH
+
+  git push -u origin release/stg:$PRERELEASE_BRANCH
 
   # IS THIS RIGHT??
   git request-pull $PRERELEASE_BRANCH https://github.com/coatsbj/lockstep-release-1.git release/stg
